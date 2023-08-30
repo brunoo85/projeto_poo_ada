@@ -1,0 +1,119 @@
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+:root{
+     --color-primary: #01161E;
+     --color-secundary: #006BA6;
+     --color-terciary: #688B58;
+     --color-text1: #FFC145;
+     --color-white: #D0F4EA;
+}
+
+body{
+     height: 100vh;
+     background: rgb(1,22,30);
+     background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-secundary) 100%);
+     position:static;
+}
+
+header{
+     background-color: var(--color-primary);
+     color: var(--color-text1);
+     padding: 10px;
+     padding-left: 2rem;
+     font-weight: bold;
+     font-size: 1.5rem;
+}
+
+main{
+     display: flex;
+     margin-top: 1rem;
+     height: 90vh;
+     justify-content: space-around;
+}
+
+.formulario{
+     width: 45vw;
+     /* height: 100vh; */
+     /* padding-left: 1rem; */
+     margin-right: 1rem;
+}
+
+.catalogo{
+     background-color: #FFC145;
+     width: 47vw;
+     padding-left: 0.5rem;
+     padding-right: 1rem;
+     /* position:fixed; */
+     overflow-y: auto;
+}
+
+label{
+     font-size: 1.5rem;    
+}
+
+.labelInput{
+     display: block;
+     color: var(--color-text1);
+     font-weight: bold;
+     margin: 0.4rem 0 0.4rem 0;
+}
+
+input{
+     width: 87%;
+     font-size: 1.2rem;
+     padding: 0.2rem;
+     border-radius: 2rem;
+     border: none;
+     background-color: var(--color-white);
+     padding-left: 10px;
+}
+
+.formLabel{
+     background-color: red;
+     display: flex;
+     justify-content: space-around;
+     padding: 0.3rem;
+     margin-bottom: 0.5rem;
+}
+
+.botaoForm{
+     padding: 0.6rem;
+     border-radius: 0.6rem;
+     border: none;
+     display:block;
+     margin-top: 1rem;
+     margin-left: auto;
+     margin-right: auto;
+     font-size: 1.2rem;
+     background-color: var(--color-primary);
+     color: var(--color-text1);
+     font-weight: bold;
+}
+
+#yes, #no{
+     display: none;
+}
+
+li{
+     text-decoration: none;
+     text-transform: none;
+     list-style-type: none;
+     margin-bottom: 0.5rem;
+}
+
+.listaSeries{
+     /* background-color: red; */
+}
+
+li >div{
+     background-color: aquamarine;
+     border-radius: 2rem;
+     font-size: 1.1rem;
+     padding: 0.5rem;
+     padding-left: 0.6rem;
+}
+
