@@ -94,19 +94,11 @@ input{
      font-weight: bold;
 }
 
-#yes, #no{
-     display: none;
-}
-
 li{
      text-decoration: none;
      text-transform: none;
      list-style-type: none;
      margin-bottom: 0.5rem;
-}
-
-.listaSeries{
-     /* background-color: red; */
 }
 
 li >div{
@@ -117,3 +109,40 @@ li >div{
      padding-left: 0.6rem;
 }
 
+.editable {
+     border: 1px solid #ccc;
+     padding: 5px;
+     margin-top: 5px;
+     background-color: white;
+   }
+   
+   .editable.editing {
+     background-color: lightyellow; /* Cor de fundo enquanto edita */
+   }
+   
+   .editable p {
+     margin: 0;
+   }
+   
+   .edit-button, .save-button, .delete-button{
+     color: white;
+     border: none;
+     padding: 5px 10px;
+     cursor: pointer;
+     border-radius: 20px;
+   }
+   
+   .edit-button {
+     background-color: #4CAF50;
+     display: block;
+   }
+   
+   .save-button {
+     background-color: #3498db;
+   }
+   
+   
+   
+   .delete-button {
+     background-color: #e74c3c;
+   }
