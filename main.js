@@ -3,22 +3,22 @@ const form = document.getElementById("formulario");
 const listIn = document.querySelector(".listaSeries");
 
 let series = [
-     // {
-     //      titulo: "The Midnight Gospel",
-     //      genero: "Animação, ficção científica",
-     //      plataforma: "Netflix",
-     //      assistida: "Sim",
-     // },{
-     //      titulo: "Strange New Words",
-     //      genero: "Ficção científica",
-     //      plataforma: "Paramount+",
-     //      assistida: "Sim",
-     // },{
-     //      titulo: "Game of Thrones",
-     //      genero: "Ação, Fantasia, Medieval",
-     //      plataforma: "Hbo Max",
-     //      assistida: "Não",
-     // }
+     {
+          titulo: "The Midnight Gospel",
+          genero: "Animação, ficção científica",
+          plataforma: "Netflix",
+          assistida: "Sim",
+     },{
+          titulo: "Strange New Words",
+          genero: "Ficção científica",
+          plataforma: "Paramount+",
+          assistida: "Sim",
+     },{
+          titulo: "Game of Thrones",
+          genero: "Ação, Fantasia, Medieval",
+          plataforma: "Hbo Max",
+          assistida: "Não",
+     }
 ]
 
 
@@ -87,7 +87,7 @@ form.addEventListener("submit", function(event){
                div.classList.add("editing"); // Adiciona a classe temporária
 
             botaoEditar.style.display = "none"; // Esconde o botão de editar
-            saveButton.style.display = "block"; // Mostra o botão de salvar
+            saveButton.style.display = "inline-block"; // Mostra o botão de salvar
           });
 
           const saveButton = document.createElement("button");
@@ -103,7 +103,7 @@ form.addEventListener("submit", function(event){
             
             div.classList.remove("editing"); // Remove a classe de edição temporária
             
-            botaoEditar.style.display = "block"; // Mostra o botão de editar
+            botaoEditar.style.display = "inline-block"; // Mostra o botão de editar
             saveButton.style.display = "none"; // Esconde o botão de salvar
           });
 
@@ -138,22 +138,5 @@ form.addEventListener("submit", function(event){
         
         // Exibe a lista inicial ao carregar a página
         updateItemList();
-
-
-
-
-
-series.forEach(serie => {
-     listIn.innerHTML += `
-     <li>
-          <div>
-               <p> Titulo: ${serie.titulo}</p>
-               <p> Gênero: ${serie.genero}</p>
-               <p> Plataforma: ${serie.plataforma}</p>
-               <p> Assistida: ${serie.assistida}</p>
-               <button> Alterar</button>
-          </div>
-     </li>`
-   })
 
 });

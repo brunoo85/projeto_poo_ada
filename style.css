@@ -37,17 +37,13 @@ main{
 
 .formulario{
      width: 45vw;
-     /* height: 100vh; */
-     /* padding-left: 1rem; */
      margin-right: 1rem;
 }
 
 .catalogo{
-     background-color: #FFC145;
      width: 47vw;
      padding-left: 0.5rem;
      padding-right: 1rem;
-     /* position:fixed; */
      overflow-y: auto;
 }
 
@@ -72,12 +68,24 @@ input{
      padding-left: 10px;
 }
 
+#radio{
+     width: 50px;
+     background-color: #4CAF50;
+}
+
 .formLabel{
-     background-color: red;
+     background-color: var(--color-white);
+     border-radius: 2rem;
+     color: var(--color-primary);
      display: flex;
      justify-content: space-around;
-     padding: 0.3rem;
+     padding: 0.4rem;
      margin-bottom: 0.5rem;
+}
+
+.labelRadio{
+     display: flex;
+     flex-direction: row;
 }
 
 .botaoForm{
@@ -95,54 +103,56 @@ input{
 }
 
 li{
-     text-decoration: none;
-     text-transform: none;
      list-style-type: none;
      margin-bottom: 0.5rem;
 }
 
-li >div{
-     background-color: aquamarine;
+.editable {
+     background-color: var(--color-white);
      border-radius: 2rem;
      font-size: 1.1rem;
      padding: 0.5rem;
      padding-left: 0.6rem;
-}
-
-.editable {
-     border: 1px solid #ccc;
-     padding: 5px;
-     margin-top: 5px;
-     background-color: white;
+     text-align: center;
    }
    
    .editable.editing {
-     background-color: lightyellow; /* Cor de fundo enquanto edita */
-   }
-   
-   .editable p {
-     margin: 0;
+     background-color: #0b8ed4; 
    }
    
    .edit-button, .save-button, .delete-button{
-     color: white;
+     color: var(--color-primary);
+     margin-left: 0.2rem;
      border: none;
-     padding: 5px 10px;
+     padding: 0.5rem;
      cursor: pointer;
      border-radius: 20px;
+     font-size: 0.8rem;
    }
    
    .edit-button {
-     background-color: #4CAF50;
-     display: block;
+     background-color: #51F653;
+    
    }
    
    .save-button {
-     background-color: #3498db;
+     background-color: #009DDC;
    }
    
-   
-   
    .delete-button {
-     background-color: #e74c3c;
+     background-color: #E70D40;
+   }
+
+   .catalogo::-webkit-scrollbar {
+     width: 0.75rem;               
+   }
+   
+   .catalogo::-webkit-scrollbar-track {
+     background: var(--color-text1);        
+   }
+   
+   .catalogo::-webkit-scrollbar-thumb {
+     background-color: var(--color-secundary); 
+     border-radius: 1.25rem;     
+     border: 0.18 solid var(--color-terciary);  
    }
