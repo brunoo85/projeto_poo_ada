@@ -1,8 +1,96 @@
 document.addEventListener("DOMContentLoaded", function() {
 const form = document.getElementById("formulario");
-const listIn = document.querySelector(".listaSeries");
+const listaSeries = document.querySelector(".listaSeries");
 
-let series = [
+class Series{
+     constructor(titulo,genero,plataforma,assistida) {
+          this.titulo = titulo;
+          this.genero = genero;
+          this.plataforma=plataforma;
+          this.assistida=assistida;
+     }
+}
+
+class Serie extends Series{
+     constructor(){}
+
+     atualizarLista() {
+          listaSeries.innerHTML = ""; // Limpa a lista atual
+          
+          // Preenche a lista com os itens atualizados
+          for (const serie of catalogo) {
+            const li = document.createElement("li");
+            li.appendChild(criarDivEditavel(serie));
+            listaSeries.appendChild(li);
+          }
+        }
+
+        criarDivEditavel(serie,index){
+          const div = document.createElement("div");
+          div.classList.add("serieDiv");
+
+          const infos = [
+               `<p>Titulo: <span editavel="true">${serie.titulo}</span></p>`,
+            `<p>Gênero: <span editavel="true">${serie.genero}</span></p>`,
+            `<p>Plataforma: <span editavel="true">${serie.plataforma}</span></p>`,
+            `<p>Assistida:  <span editavel="true">${serie.assistida}</span></p>` 
+          ];
+
+          infos.forEach(info =>{
+               div.innerHTML += info;
+          });
+
+          const botaoEditar = document.createElement("button");
+          botaoEditar.classList.add("botaoEditar");
+          botaoEditar.textContent = "Editar";
+
+          botaoEditar.addEventListener("click",function(){
+               const spans = div.querySelectorAll("span");
+               spans.forEach(span => {
+                    span.setAttribute("editavel", "true");
+               });
+               div.classList.add("editando"); // Adiciona a classe temporária
+
+            botaoEditar.style.display = "none"; // Esconde o botão de editar
+            saveButton.style.display = "inline-block"; // Mostra o botão de salvar
+          });
+
+          const saveButton = document.createElement("button");
+          saveButton.classList.add("botaoSalvar");
+          saveButton.textContent = "Salvar";
+          saveButton.style.display = "none"; // Inicialmente esconde o botão de salvar
+          
+          saveButton.addEventListener("click", function() {
+            const spans = div.querySelectorAll("span");
+            spans.forEach(span => {
+              span.removeAttribute("");
+            });
+            
+            div.classList.remove("editando"); // Remove a classe de edição temporária
+            
+            botaoEditar.style.display = "inline-block"; // Mostra o botão de editar
+            saveButton.style.display = "none"; // Esconde o botão de salvar
+          });
+
+          const deleteButton = document.createElement("button");
+          deleteButton.classList.add("botaoExcluir");
+          deleteButton.textContent = "Excluir";
+    
+          deleteButton.addEventListener("click", function() {
+               catalogo.splice(index, 1); // Remove o item da lista
+               atualizarLista();
+          });
+
+          div.appendChild(botaoEditar);
+          div.appendChild(saveButton);
+          div.appendChild(deleteButton);
+
+          return div;
+     }
+
+}
+
+let catalogo = [
      {
           titulo: "The Midnight Gospel",
           genero: "Animação, ficção científica",
@@ -20,6 +108,12 @@ let series = [
           assistida: "Não",
      }
 ]
+
+     let calls = new Series("Calls","Suspense/Terror","Apple TV+","Sim");
+
+
+     catalogo.push(calls);
+
 
 
 
@@ -50,25 +144,25 @@ form.addEventListener("submit", function(event){
      
 
      if(serie){
-          series.push(serie)
+          catalogo.push(serie)
           titulo.value="";
           genero.value="";
           plataforma.value="";
           assistida.value="";
 
-          updateItemList();
+          atualizarLista();
      }
      });
 
      function criarDivEditavel(serie,index){
           const div = document.createElement("div");
-          div.classList.add("editable");
+          div.classList.add("serieDiv");
 
           const infos = [
-               `<p>Titulo: <span contenteditable="true">${serie.titulo}</span></p>`,
-            `<p>Gênero: <span contenteditable="true">${serie.genero}</span></p>`,
-            `<p>Plataforma: <span contenteditable="true">${serie.plataforma}</span></p>`,
-            `<p>Assistida:  <span contenteditable="true">${serie.assistida}</span></p>` 
+               `<p>Titulo: <span editavel="true">${serie.titulo}</span></p>`,
+            `<p>Gênero: <span editavel="true">${serie.genero}</span></p>`,
+            `<p>Plataforma: <span editavel="true">${serie.plataforma}</span></p>`,
+            `<p>Assistida:  <span editavel="true">${serie.assistida}</span></p>` 
           ];
 
           infos.forEach(info =>{
@@ -76,67 +170,78 @@ form.addEventListener("submit", function(event){
           });
 
           const botaoEditar = document.createElement("button");
-          botaoEditar.classList.add("edit-button");
+          botaoEditar.classList.add("botaoEditar");
           botaoEditar.textContent = "Editar";
 
           botaoEditar.addEventListener("click",function(){
                const spans = div.querySelectorAll("span");
                spans.forEach(span => {
-                    span.setAttribute("contenteditable", "true");
+                    span.setAttribute("editavel", "true");
                });
-               div.classList.add("editing"); // Adiciona a classe temporária
+               div.classList.add("editando"); // Adiciona a classe temporária
 
             botaoEditar.style.display = "none"; // Esconde o botão de editar
             saveButton.style.display = "inline-block"; // Mostra o botão de salvar
           });
 
           const saveButton = document.createElement("button");
-          saveButton.classList.add("save-button");
+          saveButton.classList.add("botaoSalvar");
           saveButton.textContent = "Salvar";
           saveButton.style.display = "none"; // Inicialmente esconde o botão de salvar
           
           saveButton.addEventListener("click", function() {
             const spans = div.querySelectorAll("span");
             spans.forEach(span => {
-              span.removeAttribute("contenteditable");
+              span.removeAttribute("");
             });
             
-            div.classList.remove("editing"); // Remove a classe de edição temporária
+            div.classList.remove("editando"); // Remove a classe de edição temporária
             
             botaoEditar.style.display = "inline-block"; // Mostra o botão de editar
             saveButton.style.display = "none"; // Esconde o botão de salvar
           });
 
           const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-button");
-    deleteButton.textContent = "Excluir";
+          deleteButton.classList.add("botaoExcluir");
+          deleteButton.textContent = "Excluir";
     
-    deleteButton.addEventListener("click", function() {
-     console.log("o botaõ de excluir foi apertado");
-      series.splice(index, 1); // Remove o item da lista
-      updateItemList();
-    });
+          deleteButton.addEventListener("click", function() {
+               catalogo.splice(index, 1); // Remove o item da lista
+               atualizarLista();
+          });
 
-    div.appendChild(botaoEditar);
-    div.appendChild(saveButton);
-    div.appendChild(deleteButton);
+          div.appendChild(botaoEditar);
+          div.appendChild(saveButton);
+          div.appendChild(deleteButton);
 
-    return div;
+          return div;
      }
 
 
-     function updateItemList() {
-          listIn.innerHTML = ""; // Limpa a lista atual
+     function atualizarLista() {
+          listaSeries.innerHTML = ""; // Limpa a lista atual
           
           // Preenche a lista com os itens atualizados
-          for (const serie of series) {
+          for (const serie of catalogo) {
             const li = document.createElement("li");
             li.appendChild(criarDivEditavel(serie));
-            listIn.appendChild(li);
+            listaSeries.appendChild(li);
           }
         }
         
         // Exibe a lista inicial ao carregar a página
-        updateItemList();
+        atualizarLista();
 
 });
+
+/*
+metodos:
+atualizarLista()
+criarDivEditavel(serie,index)
+(outras que pode ser acrescentado pra quebrar o código em mais funções)
+criarBotaoEditar()
+criarBotaoSlvar()
+criarBotaoDeletar()
+*/
+
+

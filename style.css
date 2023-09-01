@@ -107,7 +107,7 @@ li{
      margin-bottom: 0.5rem;
 }
 
-.editable {
+.serieDiv {
      background-color: var(--color-white);
      border-radius: 2rem;
      font-size: 1.1rem;
@@ -116,11 +116,11 @@ li{
      text-align: center;
    }
    
-   .editable.editing {
+   .serieDiv.editando {
      background-color: #0b8ed4; 
    }
    
-   .edit-button, .save-button, .delete-button{
+   .botaoEditar, .botaoSalvar, .botaoExcluir{
      color: var(--color-primary);
      margin-left: 0.2rem;
      border: none;
@@ -130,16 +130,16 @@ li{
      font-size: 0.8rem;
    }
    
-   .edit-button {
+   .botaoEditar {
      background-color: #51F653;
     
    }
    
-   .save-button {
+   .botaoSalvar {
      background-color: #009DDC;
    }
    
-   .delete-button {
+   .botaoExcluir {
      background-color: #E70D40;
    }
 
