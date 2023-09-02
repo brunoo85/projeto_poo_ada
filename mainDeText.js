@@ -13,18 +13,29 @@ class Serie extends Series{
      constructor(titulo,genero,plataforma,assistida){
           super(titulo,genero,plataforma,assistida);
           }
-     
-          criarDivEditavel(index){
+          criarDivEditavel(serie,index){}
+
+          atualizarLista() {
+               const listaSeries = document.getElementById("listaSeries");
+               listaSeries.innerHTML = ""; // Limpa a lista atual
+
+               catalogo.forEach((serie, index) =>{
+                    const li = document.createElement("li");
+                    li.appendChild(this.criarDivEditavel(serie, index));
+                    listaSeries.appendChild(li);
+               });
+               }
+
+          criarDivEditavel(serie, index){
                
                const div = document.createElement("div");
                div.classList.add("serieDiv");
      
                const infos = [
-                    `<p>Titulo: <span contenteditable="true">${this.titulo}</span></p>`,
-                 `<p>Gênero: <span contenteditable="true">${this.genero}</span></p>`,
-                 `<p>Plataforma: <span contenteditable="true">${this.plataforma}</span></p>`,
-                 `<p>Assistida:  <span contenteditable="true">${this.assistida}</span></p>` ,
-                 `<p>Index:  <span contenteditable="true">${index}</span></p>`
+                    `<p>Titulo: <span contenteditable="false">${serie.titulo}</span></p>`,
+                 `<p>Gênero: <span contenteditable="false">${serie.genero}</span></p>`,
+                 `<p>Plataforma: <span contenteditable="false">${serie.plataforma}</span></p>`,
+                 `<p>Assistida:  <span contenteditable="false">${serie.assistida}</span></p>`
                ];
      
                infos.forEach(info =>{
@@ -67,8 +78,9 @@ class Serie extends Series{
                deleteButton.textContent = "Excluir";
          
                deleteButton.addEventListener("click", function() {
+                    console.log("o index do que foi clicado foi esse aqui:", index);
                     catalogo.splice(index, 1); // Remove o item da lista
-                    this.atualizarLista();
+                    serie.atualizarLista();
                });
      
                div.appendChild(botaoEditar);
@@ -78,18 +90,16 @@ class Serie extends Series{
                return div;
           }
 
-          atualizarLista() {
-               const listaSeries = document.getElementById("listaSeries");
-               listaSeries.innerHTML = ""; // Limpa a lista atual
+          // atualizarLista() {
+          //      const listaSeries = document.getElementById("listaSeries");
+          //      listaSeries.innerHTML = ""; // Limpa a lista atual
 
-               catalogo.forEach((serie, index) =>{
-                    const li = document.createElement("li");
-                    li.appendChild(this.criarDivEditavel(index));
-                    listaSeries.appendChild(li);
-               });
-
-               console.log(catalogo);
-               }
+          //      catalogo.forEach((serie, index) =>{
+          //           const li = document.createElement("li");
+          //           li.appendChild(this.criarDivEditavel(serie, index));
+          //           listaSeries.appendChild(li);
+          //      });
+          //      }
 }
      
 
@@ -124,8 +134,6 @@ class Serie extends Series{
                     genero.value="";
                     plataforma.value="";
                     assistida.value="";
-                    console.log("o if deu certo");
-                    console.log("a serie é assim:",newSerie);
                     newSerie.atualizarLista();
                  }
              });
