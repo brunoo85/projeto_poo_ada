@@ -12,7 +12,9 @@ class Series{
 }
 
 class Serie extends Series{
-     constructor(){}
+     constructor(titulo,genero,plataforma,assistida){
+          super(titulo,genero,plataforma,assistida);
+     }
 
      atualizarLista() {
           listaSeries.innerHTML = ""; // Limpa a lista atual
@@ -109,12 +111,17 @@ let catalogo = [
      }
 ]
 
-     let calls = new Series("Calls","Suspense/Terror","Apple TV+","Sim");
+     // let calls = new Serie("Calls","Suspense/Terror","Apple TV+","Sim");
+     // let goodPlace = new Serie("The good Place", "Comédia", "Netflix","Sim");
+     // let gilmore = new Serie("Gilmore Girls","Drama","Netflix","Não");
+     // let only = new Serie("Only muders in the building","comédia", "Star+","Não");
 
+     // catalogo.push(calls);
+     // catalogo.push(goodPlace);
+     // catalogo.push(gilmore);
+     // catalogo.push(only);
 
-     catalogo.push(calls);
-
-
+     // console.log(catalogo)
 
 
 form.addEventListener("submit", function(event){
@@ -159,10 +166,10 @@ form.addEventListener("submit", function(event){
           div.classList.add("serieDiv");
 
           const infos = [
-               `<p>Titulo: <span editavel="true">${serie.titulo}</span></p>`,
-            `<p>Gênero: <span editavel="true">${serie.genero}</span></p>`,
-            `<p>Plataforma: <span editavel="true">${serie.plataforma}</span></p>`,
-            `<p>Assistida:  <span editavel="true">${serie.assistida}</span></p>` 
+               `<p>Titulo: <span contenteditable="true">${serie.titulo}</span></p>`,
+            `<p>Gênero: <span contenteditable="true">${serie.genero}</span></p>`,
+            `<p>Plataforma: <span contenteditable="true">${serie.plataforma}</span></p>`,
+            `<p>Assistida:  <span contenteditable="true">${serie.assistida}</span></p>` 
           ];
 
           infos.forEach(info =>{
@@ -176,7 +183,7 @@ form.addEventListener("submit", function(event){
           botaoEditar.addEventListener("click",function(){
                const spans = div.querySelectorAll("span");
                spans.forEach(span => {
-                    span.setAttribute("editavel", "true");
+                    span.setAttribute("contenteditable", "true");
                });
                div.classList.add("editando"); // Adiciona a classe temporária
 
@@ -192,7 +199,7 @@ form.addEventListener("submit", function(event){
           saveButton.addEventListener("click", function() {
             const spans = div.querySelectorAll("span");
             spans.forEach(span => {
-              span.removeAttribute("");
+              span.removeAttribute("contenteditable");
             });
             
             div.classList.remove("editando"); // Remove a classe de edição temporária
@@ -233,6 +240,8 @@ form.addEventListener("submit", function(event){
         atualizarLista();
 
 });
+
+
 
 /*
 metodos:
